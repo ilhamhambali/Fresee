@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Freese</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Mau belajar Android, iOS, Machine Learning, Cloud, Front-End, Back-End, dan bidang IT lainnya? Di Dicoding aja!</string>
+    <string name="title_welcome_page">Selamat datang di Dicoding!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
+    <string name="name">Nama</string>
+    <string name="message_main_page">Selamat Belajar di Dicoding.</string>
+    <string name="greeting">Halo %1$s,</string>
+    <string name="logout">Keluar</string>
+    <string name="app_logo">App Logo</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
+    <string name="title_signup">Sign Up</string>
+    <string name="have_account">Have account?</string>
+    <string name="signin">Sign in</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="scan">SEE</string>
+    <string name="cart">Keranjang</string>
+    <string name="profile">Profil</string>
+    <string name="AI">AI</string>
+    <string name="whatsapp_number">Nomor Whatsapp</string>
+    <string name="segar">SEGAR/TIDAK SEGAR</string>
+</resources>

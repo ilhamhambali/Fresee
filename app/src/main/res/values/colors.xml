@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Palette -->
+    <color name="primary">#347928</color>
+    <color name="primary_variant">#2B5E20</color>
+    <color name="secondary">#C0EBA6</color>
+
+    <!-- Background and Surface -->
+    <color name="background">#FFFBE6</color>
+    <color name="surface">#F5F5F5</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="red">#FF0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="splash_background">#E3DAC9</color>
+</resources>

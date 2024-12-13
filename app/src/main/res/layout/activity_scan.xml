@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.scan.ScanActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_placeholder_img"
+        app:tint="@color/text_secondary"
+        android:background="@color/surface"/>
+    <LinearLayout
+        android:id="@+id/bottomButtons"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom|end"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <ImageView
+            android:id="@+id/galleryButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="12dp"
+            android:background="@drawable/circle_shape"
+            app:tint="@color/white"
+            android:src="@drawable/ic_gallery"
+            android:contentDescription="Confirm Button"
+            android:layout_marginStart="16dp"
+            />
+
+        <ImageView
+            android:id="@+id/captureButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_capture"
+            android:padding="12dp"
+            android:background="@drawable/circle_shape"
+            android:contentDescription="Capture Button"
+            android:layout_marginTop="16dp"
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
