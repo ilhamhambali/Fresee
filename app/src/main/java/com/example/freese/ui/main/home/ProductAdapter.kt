@@ -1,10 +1,9 @@
 package com.example.freese.ui.main.home
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.freese.data.ProductModel
+import com.example.freese.data.model.ProductModel
 import com.example.freese.databinding.ItemProductBinding
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {

@@ -8,6 +8,7 @@
     <!-- Background and Surface -->
     <color name="background">#FFFBE6</color>
     <color name="surface">#F5F5F5</color>
+    <color name="bg_slider">#008631</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#212121</color>

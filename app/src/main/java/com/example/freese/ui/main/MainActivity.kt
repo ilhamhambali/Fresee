@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.freese.DependencyProvider
+import com.example.freese.di.DependencyProvider
 import com.example.freese.GenericViewModelFactory
 import com.example.freese.R
 import com.example.freese.databinding.ActivityMainBinding
@@ -24,7 +24,7 @@ import com.example.freese.ui.auth.AuthViewModel
 import com.example.freese.ui.main.scan.ScanActivity.Companion.CAMERAX_RESULT
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: AuthViewModel
+    private lateinit var viewModel: AuthViewModel
     private lateinit var binding: ActivityMainBinding
 
     private var currentImageUri: Uri? = null
@@ -55,14 +55,11 @@ class MainActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
 
-        mainViewModel = ViewModelProvider(
-            this,
-            GenericViewModelFactory {
-                AuthViewModel(
-                    DependencyProvider.provideUserRepository(this)
-                )
-            }
-        )[AuthViewModel::class.java]
+        val repository = DependencyProvider.provideUserRepository(this)
+        val factory = GenericViewModelFactory(AuthViewModel::class.java) {
+            AuthViewModel(repository)
+        }
+        viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Ganti @color/primary_variant dengan warna utama aplikasi Anda jika perlu -->
+    <solid android:color="#85A947"/>
+
+    <size
+        android:width="8dp"
+        android:height="8dp"/>
+</shape>

@@ -1,0 +1,11 @@
+{
+  "message": "Login berhasil dari data palsu!",
+  "user": {
+    "phoneNumber": "081234567890",
+    "role": "user",
+    "id": 101,
+    "email": "user@example.com",
+    "username": "user_palsu"
+  },
+  "token": "ini-adalah-token-palsu-dari-json-qwertz"
+}

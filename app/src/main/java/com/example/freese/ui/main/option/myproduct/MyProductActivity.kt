@@ -2,16 +2,11 @@ package com.example.freese.ui.main.option.myproduct
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freese.R
-import com.example.freese.data.ProductModel
+import com.example.freese.data.model.ProductModel
 import com.example.freese.databinding.ActivityMyProductBinding
 import com.example.freese.ui.detail.DetailActivity
-import com.example.freese.ui.main.home.ProductAdapter
 
 class MyProductActivity : AppCompatActivity() {
 

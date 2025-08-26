@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Freese</string>
+    <string name="app_name">Fresee</string>
     <string name="signup">Daftar</string>
     <string name="login">Masuk</string>
     <string name="message_welcome_page">Mau belajar Android, iOS, Machine Learning, Cloud, Front-End, Back-End, dan bidang IT lainnya? Di Dicoding aja!</string>
@@ -18,7 +18,7 @@
     <string name="register">Register</string>
     <string name="title_signup">Sign Up</string>
     <string name="have_account">Have account?</string>
-    <string name="signin">Sign in</string>
+    <string name="signin">Sign In</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="scan">SEE</string>
@@ -27,4 +27,9 @@
     <string name="AI">AI</string>
     <string name="whatsapp_number">Nomor Whatsapp</string>
     <string name="segar">SEGAR/TIDAK SEGAR</string>
+    <string name="image_splashscreen">image_splashscreen</string>
+    <string name="imagebtnnext">imageBtnNext</string>
+    <string name="skip">SKIP</string>
+    <string name="next">NEXT</string>
+    <string name="lewati">Lewati</string>
 </resources>

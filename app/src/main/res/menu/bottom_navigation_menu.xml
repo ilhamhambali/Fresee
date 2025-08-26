@@ -4,20 +4,18 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home"
-        android:iconTint="@color/background"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_favorite"
-        android:iconTint="@color/background"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_scan"
         android:title="@string/AI"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/navigation_option"
         android:icon="@drawable/ic_option"

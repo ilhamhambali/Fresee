@@ -1,18 +1,13 @@
 package com.example.freese.ui.main.scan
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.freese.data.ScanResponse
+import com.example.freese.api.response.ScanResponse
 import com.example.freese.data.repository.ScanRepository
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
 import java.io.File
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 class ScanViewModel(private val repository: ScanRepository) : ViewModel() {
 
@@ -34,9 +29,7 @@ class ScanViewModel(private val repository: ScanRepository) : ViewModel() {
             val response = repository.uploadImage(file)
             _scanResult.value = response  // Pastikan ini berhasil di-set
             setScanResult(response)
-            Log.d("ScanViewModel", "(ScanViewModel) Response received: ${response.message}")
          } catch (e: Exception) {
-            Log.e("ScanViewModel", "uploadImage: ${e.message}")
          } finally {
             _isLoading.value = false
          }

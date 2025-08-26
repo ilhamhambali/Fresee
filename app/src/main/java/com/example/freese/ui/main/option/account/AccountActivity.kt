@@ -2,14 +2,10 @@ package com.example.freese.ui.main.option.account
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.freese.DependencyProvider
+import com.example.freese.di.DependencyProvider
 import com.example.freese.GenericViewModelFactory
-import com.example.freese.R
 import com.example.freese.databinding.ActivityAccountBinding
 import com.example.freese.ui.auth.AuthViewModel
 
@@ -24,10 +20,12 @@ class AccountActivity : AppCompatActivity() {
       binding = ActivityAccountBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
-      viewModel = ViewModelProvider(
-         this,
-         GenericViewModelFactory { AuthViewModel(DependencyProvider.provideUserRepository(this)) }
-      )[AuthViewModel::class.java]
+      val repository = DependencyProvider.provideUserRepository(this)
+      val factory = GenericViewModelFactory(AuthViewModel::class.java) {
+         AuthViewModel(repository)
+      }
+      viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+
       viewModel.profile.observe(this) { result ->
          result.onSuccess { user ->
             binding.tvName.text = user.username

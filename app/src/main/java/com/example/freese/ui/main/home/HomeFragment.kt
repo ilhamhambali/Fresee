@@ -9,11 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freese.data.ProductModel
+import com.example.freese.data.model.ProductModel
 import com.example.freese.databinding.FragmentHomeBinding
-import com.example.freese.ui.ViewModelFactory
+import com.example.freese.ui.auth.login.LoginActivity
 import com.example.freese.ui.detail.DetailActivity
 import com.example.freese.ui.main.option.account.AccountActivity
 import com.example.freese.ui.search.SearchResultActivity
@@ -51,7 +50,7 @@ class HomeFragment : Fragment() {
       }
 
       binding.ivProfile.setOnClickListener{
-         val intent = Intent(requireContext(), AccountActivity::class.java)
+         val intent = Intent(requireContext(), LoginActivity::class.java)
          startActivity(intent)
       }
 

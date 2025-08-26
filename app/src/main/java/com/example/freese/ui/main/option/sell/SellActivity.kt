@@ -2,15 +2,11 @@ package com.example.freese.ui.main.option.sell
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.example.freese.R
-import com.example.freese.data.ProductEntity
+import com.example.freese.data.database.entity.ProductEntity
 import com.example.freese.databinding.ActivitySellBinding
-import com.example.freese.ui.ViewModelFactory
+import com.example.freese.ViewModelFactory
 
 class SellActivity : AppCompatActivity() {
 

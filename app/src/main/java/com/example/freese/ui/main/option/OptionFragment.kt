@@ -1,21 +1,16 @@
 package com.example.freese.ui.main.option
 
 import android.content.Intent
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import com.example.freese.DependencyProvider
+import com.example.freese.di.DependencyProvider
 import com.example.freese.GenericViewModelFactory
-import com.example.freese.R
-import com.example.freese.data.pref.UserPreference
-import com.example.freese.data.repository.UserRepository
 import com.example.freese.databinding.FragmentOptionBinding
 import com.example.freese.ui.auth.AuthViewModel
-import com.example.freese.ui.auth.AuthViewModelFactory
 import com.example.freese.ui.auth.login.LoginActivity
 import com.example.freese.ui.main.option.account.AccountActivity
 import com.example.freese.ui.main.option.myproduct.MyProductActivity
@@ -26,7 +21,7 @@ class OptionFragment : Fragment() {
    private var _binding: FragmentOptionBinding? = null
    private val binding get() = _binding!!
 
-   private lateinit var authViewModel: AuthViewModel
+   private lateinit var viewModel: AuthViewModel
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
@@ -39,14 +34,15 @@ class OptionFragment : Fragment() {
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
 
-      authViewModel = ViewModelProvider(
-         this,
-         GenericViewModelFactory { AuthViewModel(DependencyProvider.provideUserRepository(requireContext())) }
-      )[AuthViewModel::class.java]
+      val repository = DependencyProvider.provideUserRepository(requireContext())
+      val factory = GenericViewModelFactory(AuthViewModel::class.java) {
+         AuthViewModel(repository)
+      }
+      viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
 
       // Logout Button
       binding.logoutButton.setOnClickListener {
-         authViewModel.logout()
+         viewModel.logout()
          val intent = Intent(requireContext(), LoginActivity::class.java)
          startActivity(intent)
       }

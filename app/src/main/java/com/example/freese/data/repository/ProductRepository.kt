@@ -2,14 +2,9 @@ package com.example.freese.data.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.example.freese.data.AuthResponse
-import com.example.freese.data.ProductEntity
-import com.example.freese.data.pref.UserModel
-import com.example.freese.data.pref.UserPreference
-import com.example.freese.data.room.ProductDatabase
-import com.example.freese.data.room.dao.ProductDao
-import com.example.freese.retrofit.ApiService
-import kotlinx.coroutines.flow.Flow
+import com.example.freese.data.database.entity.ProductEntity
+import com.example.freese.data.database.ProductDatabase
+import com.example.freese.data.database.ProductDao
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

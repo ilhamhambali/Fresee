@@ -8,6 +8,7 @@
     <!-- Background and Surface -->
     <color name="background">#2E2E2E</color> <!-- Warna netral gelap -->
     <color name="surface">#424242</color> <!-- Permukaan sedikit lebih terang -->
+    <color name="bg_slider">#123524</color>
 
     <!-- Text Colors -->
     <color name="text_primary">#FFFFFF</color> <!-- Warna terang untuk teks utama -->

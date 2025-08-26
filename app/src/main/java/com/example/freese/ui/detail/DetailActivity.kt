@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.freese.data.ProductModel
+import com.example.freese.data.model.ProductModel
 import com.example.freese.databinding.ActivityDetailBinding
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat

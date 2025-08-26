@@ -1,7 +1,7 @@
 package com.example.freese.data.repository
 
-import com.example.freese.data.ScanResponse
-import com.example.freese.retrofit.ScanApiConfig
+import com.example.freese.api.response.ScanResponse
+import com.example.freese.api.ScanApiConfig
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

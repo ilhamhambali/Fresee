@@ -3,7 +3,7 @@ package com.example.freese.ui.main.home
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.freese.data.ProductEntity
+import com.example.freese.data.database.entity.ProductEntity
 import com.example.freese.data.repository.ProductRepository
 
 class HomeViewModel(application: Application) : ViewModel() {

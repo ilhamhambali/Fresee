@@ -6,8 +6,6 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
-import com.example.freese.data.ScanResponse
 import com.example.freese.data.repository.ScanRepository
 import com.example.freese.databinding.ActivityScanResultBinding
 

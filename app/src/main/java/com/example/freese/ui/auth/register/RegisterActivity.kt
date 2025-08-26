@@ -9,21 +9,16 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.example.freese.DependencyProvider
 import com.example.freese.GenericViewModelFactory
 import com.example.freese.databinding.ActivityRegisterBinding
+import com.example.freese.di.DependencyProvider
 import com.example.freese.ui.auth.AuthViewModel
 import com.example.freese.ui.auth.login.LoginActivity
-import com.example.freese.ui.auth.login.LoginViewModelFactory
-import com.example.freese.data.pref.UserPreference
-import com.example.freese.data.repository.UserRepository
-import com.example.freese.ui.auth.AuthViewModelFactory
 import com.example.freese.ui.main.MainActivity
 
+//@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
    private lateinit var binding: ActivityRegisterBinding
    private lateinit var viewModel: AuthViewModel
@@ -33,35 +28,44 @@ class RegisterActivity : AppCompatActivity() {
       binding = ActivityRegisterBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
+      binding.idLewati.setOnClickListener {
+         val intent = Intent(this, MainActivity::class.java)
+         startActivity(intent)
+         finish()
+      }
+
+      val repository = DependencyProvider.provideUserRepository(this)
+      val factory = GenericViewModelFactory(AuthViewModel::class.java) {
+         AuthViewModel(repository)
+      }
+      viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+
+
+      observeRegister()
+      setupAction()
+
       setupView()
       playAnimation()
-
-      setupAction()
-      observeRegisterResult()
    }
 
 
-   private fun observeRegisterResult() {
+   private fun observeRegister() {
       viewModel.registerResult.observe(this) { result ->
          result.onSuccess { response ->
-            Toast.makeText(this, response.message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Registrasi berhasil: ${response.message}", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finish()
          }
 
          result.onFailure { throwable ->
-            // Jika registrasi gagal
-            Toast.makeText(this, "Register failed: ${throwable.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Register gagal: ${throwable.message}", Toast.LENGTH_SHORT).show()
          }
       }
    }
 
    private fun setupAction() {
-      viewModel = ViewModelProvider(
-         this,
-         GenericViewModelFactory { AuthViewModel(
-            DependencyProvider.provideUserRepository(this)) }
-      )[AuthViewModel::class.java]
       binding.registerButton.setOnClickListener {
          val username = binding.edRegisterName.text.toString()
          val email = binding.edRegisterEmail.text.toString()
@@ -95,25 +99,24 @@ class RegisterActivity : AppCompatActivity() {
       supportActionBar?.hide()
    }
    private fun playAnimation() {
-      val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
+
       val nameTextView =
-         ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(1000)
       val nameEditTextLayout =
-         ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(1000)
       val emailTextView =
-         ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(1000)
       val emailEditTextLayout =
-         ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(1000)
       val passwordTextView =
-         ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(1000)
       val passwordEditTextLayout =
-         ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-      val signup = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 1f).setDuration(100)
+         ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(1000)
+      val signup = ObjectAnimator.ofFloat(binding.registerButton, View.ALPHA, 1f).setDuration(1000)
 
 
       AnimatorSet().apply {
          playSequentially(
-            title,
             nameTextView,
             nameEditTextLayout,
             emailTextView,

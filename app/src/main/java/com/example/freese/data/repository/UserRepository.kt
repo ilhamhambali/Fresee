@@ -1,30 +1,30 @@
 package com.example.freese.data.repository
 
-import com.example.freese.data.AuthResponse
-import com.example.freese.data.User
-import com.example.freese.data.pref.UserModel
+import com.example.freese.api.response.AuthResponse
+import com.example.freese.api.response.User
+import com.example.freese.data.model.UserModel
 import com.example.freese.data.pref.UserPreference
-import com.example.freese.retrofit.ApiService
+import com.example.freese.api.ApiService
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(
     private val userPreference: UserPreference,
     private val apiService: ApiService
-) {
+) : IAuthRepository {
 
-    suspend fun saveSession(user: UserModel) {
+    override suspend fun saveSession(user: UserModel) {
         userPreference.saveSession(user)
     }
 
-    fun getSession(): Flow<UserModel> {
+    override fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
     }
 
-    suspend fun logout() {
+    override suspend fun logout() {
         userPreference.logout()
     }
 
-    suspend fun register(username: String, email: String, password: String,phoneNumber: String): Result<AuthResponse> {
+    override suspend fun register(username: String, email: String, password: String,phoneNumber: String): Result<AuthResponse> {
         return try {
             val registerRequest = ApiService.RegisterRequest(username, email, password, phoneNumber)
 
@@ -35,7 +35,7 @@ class UserRepository private constructor(
         }
     }
 
-    suspend fun login(username: String, password: String): Result<AuthResponse> {
+    override suspend fun login(username: String, password: String): Result<AuthResponse> {
         return try {
             val loginRequest = ApiService.LoginRequest(username, password)
             val response = apiService.login(loginRequest)
@@ -45,7 +45,7 @@ class UserRepository private constructor(
         }
     }
 
-    suspend fun getProfile(): Result<User> {
+    override suspend fun getProfile(): Result<User> {
         return try {
             val response = apiService.getProfile()
             if (response.user != null) {

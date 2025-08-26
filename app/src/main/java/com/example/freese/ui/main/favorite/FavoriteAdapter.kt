@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.freese.R
-import com.example.freese.data.ProductModel
+import com.example.freese.data.model.ProductModel
 import com.example.freese.databinding.ItemFavoriteBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

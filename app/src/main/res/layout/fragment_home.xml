@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/white"
     tools:context=".ui.main.home.HomeFragment">
 
     <LinearLayout
@@ -17,34 +17,36 @@
         <LinearLayout
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:textColor="@color/text_primary"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:background="@drawable/banner_placeholder">
+            android:textColor="@color/text_primary">
 
             <EditText
                 android:id="@+id/ed_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:background="@drawable/rounded_edittext"
-                android:hint="Search"
-                android:textColor="@color/text_secondary"
-                android:inputType="text"
+                android:hint="       Search"
                 android:imeOptions="actionSearch"
-                android:padding="8dp" />
+                android:inputType="text"
+                android:padding="8dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="12dp" />
 
 
             <ImageView
                 android:id="@+id/iv_profile"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:layout_marginStart="8dp"
-                android:background="@drawable/circle_shape"
-                android:src="@drawable/ic_profile" />
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_profile"
+                app:tint="#2C2C2C" />
         </LinearLayout>
 
         <!-- Section Buah-buahan -->
@@ -52,40 +54,40 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Buah-buahan"
-            android:textSize="18sp"
-            android:padding="16dp"
-            android:textColor="@color/text_primary" />
+            android:textColor="@color/text_primary"
+            android:textSize="12sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_buah"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
+            android:paddingHorizontal="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            app:spanCount="3"
             tools:listitem="@layout/item_product" />
 
         <!-- Section Sayur-sayuran -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Sayur-sayuran"
-            android:textSize="18sp"
-            android:padding="16dp"
-            android:textColor="@color/text_primary" />
+            android:textColor="@color/text_primary"
+            android:textSize="12sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_sayur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:paddingHorizontal="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            app:spanCount="3"
             tools:listitem="@layout/item_product" />
 
     </LinearLayout>

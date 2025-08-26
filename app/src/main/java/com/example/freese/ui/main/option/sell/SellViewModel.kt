@@ -2,7 +2,7 @@ package com.example.freese.ui.main.option.sell
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
-import com.example.freese.data.ProductEntity
+import com.example.freese.data.database.entity.ProductEntity
 import com.example.freese.data.repository.ProductRepository
 
 class SellViewModel(application: Application) : ViewModel() {
