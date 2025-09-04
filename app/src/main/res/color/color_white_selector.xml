@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Saat terpilih, gunakan drawable ini -->
+    <item android:state_checked="true"
+        android:drawable="@drawable/radio_button_checked_bg" android:color="@color/primary" />
+
+    <!-- Untuk status lainnya, gunakan drawable ini -->
+    <item android:drawable="@drawable/radio_button_default_bg" android:color="@color/text_secondary" />
+
+</selector>

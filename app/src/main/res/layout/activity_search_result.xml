@@ -1,68 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context=".ui.search.SearchResultActivity">
 
-    <!-- RecyclerView untuk Hasil Pencarian -->
-
+    <!-- Toolbar Kustom -->
     <LinearLayout
-        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginHorizontal="8dp"
-            android:src="@drawable/ic_back"
-            android:layout_gravity="center"/>
-        <EditText
-            android:id="@+id/ed_search"
-            android:layout_width="0dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_edittext"
-            android:hint="Search"
-            android:inputType="text"
-            android:padding="8dp" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:textColor="@color/text_primary">
 
+            <EditText
+                android:id="@+id/ed_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:hint="       Anggur"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:padding="8dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="12dp" />
+            <ImageView
+                android:id="@+id/iv_cart"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_cart"
+                app:tint="#06231d" />
+
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="11dp"
+                android:src="@drawable/ic_profile"
+                app:tint="#06231d" />
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_search_result"
-        android:layout_width="wrap_content"
+    <!-- Tab Layout (Produk & Toko) -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/white"
         android:layout_height="wrap_content"
-        android:text="Buah-buahan"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="72dp"
-        android:layout_marginStart="24dp"
-        android:textColor="@color/text_primary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search_results"
+        app:tabIndicatorColor="@color/primary"
+
+        app:tabSelectedTextColor="@color/text_primary"
+        app:tabTextColor="@android:color/darker_gray">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produk" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toko" />
+    </com.google.android.material.tabs.TabLayout>
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-        android:layout_marginTop="100dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/item_product" >
+            android:layout_height="0.75dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/black"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    </androidx.recyclerview.widget.RecyclerView>
 
+            <!-- Info Pengiriman -->
+            <LinearLayout
+                android:id="@+id/location_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginVertical="4dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:src="@drawable/ic_location"/>
+                <TextView
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dikirim ke Rumah Ilham Hambali"
+                    android:gravity="center_vertical"/>
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/arrow_down"/>
+            </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.75dp"
+                android:layout_marginVertical="8dp"
+                android:background="@color/black"/>
+
+            <!-- Grid Produk -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search_results"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_product"
+                />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

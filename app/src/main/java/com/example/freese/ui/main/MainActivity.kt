@@ -21,6 +21,7 @@ import com.example.freese.ui.main.home.HomeFragment
 import com.example.freese.ui.main.option.OptionFragment
 import com.example.freese.ui.main.scan.ScanActivity
 import com.example.freese.ui.auth.AuthViewModel
+import com.example.freese.ui.main.history.HistoryFragment
 import com.example.freese.ui.main.scan.ScanActivity.Companion.CAMERAX_RESULT
 
 class MainActivity : AppCompatActivity() {
@@ -73,13 +74,17 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.navigation_favorite -> {
+                R.id.navigation_dapur -> {
                     replaceFragment(FavoriteFragment())
                     true
                 }
 
                 R.id.navigation_scan -> {
                     startCameraX()
+                    true
+                }
+                R.id.navigation_history -> {
+                    replaceFragment(HistoryFragment())
                     true
                 }
 

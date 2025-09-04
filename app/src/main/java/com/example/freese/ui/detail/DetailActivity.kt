@@ -56,12 +56,7 @@ class DetailActivity : AppCompatActivity() {
       }
 
 
-      // Tombol kembali
-      setSupportActionBar(binding.toolbar)
-      supportActionBar?.setDisplayHomeAsUpEnabled(true)
-      binding.toolbar.setNavigationOnClickListener {
-         onBackPressed()
-      }
+      binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
 
       binding.btnWa.setOnClickListener {
          val phoneNumber = "6289656647559" // Nomor WhatsApp tujuan

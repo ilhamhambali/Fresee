@@ -26,7 +26,7 @@ class SearchResultActivity : AppCompatActivity() {
       val query = intent.getStringExtra("QUERY")
 
       if (!query.isNullOrEmpty()) {
-         findViewById<TextView>(R.id.tv_search_result).text = "$query"
+         findViewById<TextView>(R.id.ed_search).text = "$query"
       } else {
          Toast.makeText(this, "No search term provided", Toast.LENGTH_SHORT).show()
       }

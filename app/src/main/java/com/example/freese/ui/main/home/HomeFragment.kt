@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
    private var _binding: FragmentHomeBinding? = null
    private val binding get() = _binding!!
 
-   private lateinit var sayurAdapter: ProductAdapter
+   private lateinit var rekomendasiAdapter: ProductAdapter
    private lateinit var buahAdapter: ProductAdapter
 
    override fun onCreateView(
@@ -61,14 +61,14 @@ class HomeFragment : Fragment() {
 
    private fun setupRecyclerView() {
       buahAdapter = ProductAdapter()
-      sayurAdapter = ProductAdapter()
+      rekomendasiAdapter = ProductAdapter()
       buahAdapter.setOnItemClickListener { product ->
          val intent = Intent(requireContext(), DetailActivity::class.java)
          intent.putExtra("EXTRA_PRODUCT", product)
          startActivity(intent)
       }
 
-      sayurAdapter.setOnItemClickListener { product ->
+      rekomendasiAdapter.setOnItemClickListener { product ->
          val intent = Intent(requireContext(), DetailActivity::class.java)
          intent.putExtra("EXTRA_PRODUCT", product)
          startActivity(intent)
@@ -79,9 +79,9 @@ class HomeFragment : Fragment() {
       binding.rvBuah.adapter = buahAdapter
 
       // Setup RecyclerView Sayur
-      binding.rvSayur.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-      binding.rvSayur.setHasFixedSize(true)
-      binding.rvSayur.adapter = sayurAdapter
+      binding.rvRekomendasi.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+      binding.rvRekomendasi.setHasFixedSize(true)
+      binding.rvRekomendasi.adapter = rekomendasiAdapter
    }
 
    private fun loadDummyData() {
@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
 
       // Set data ke adapter
       buahAdapter.setListProduct(buahList)
-      sayurAdapter.setListProduct(sayurList)
+      rekomendasiAdapter.setListProduct(sayurList)
    }
 
 

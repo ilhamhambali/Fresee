@@ -13,4 +13,8 @@
     <!-- Text Colors -->
     <color name="text_primary">#FFFFFF</color> <!-- Warna terang untuk teks utama -->
     <color name="text_secondary">#B0BEC5</color> <!-- Warna sekunder lebih halus -->
+
+    <color name="red">#4E1010</color>
+    <color name="white">#1B1B1B</color>
+    <color name="black">#E9E9E9</color>
 </resources>

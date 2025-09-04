@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
+        android:background="@color/white"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="64dp"
+        android:background="@color/white"
+
         android:paddingHorizontal="16dp">
 
         <LinearLayout
@@ -34,21 +36,15 @@
 
             <!-- Gambar Profil -->
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/circle_shape"
-                android:src="@drawable/ic_profile"
-                android:backgroundTint="@color/surface"
+                tools:src="@tools:sample/avatars"
+                android:backgroundTint="#E6E6E6"
                 android:padding="16dp" />
 
-            <!-- Nama Profil -->
 
-
-            <!-- Email Profil -->
-
-            <!-- CardView untuk Pilihan -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
-                    android:background="@color/surface"
+                    android:background="#FBFBFB"
                     app:cardElevation="6dp"
                     app:cardCornerRadius="16dp">
                     <LinearLayout

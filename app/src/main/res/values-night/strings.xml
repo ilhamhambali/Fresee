@@ -2,4 +2,5 @@
 <resources>
     <string name="skip">SKIP</string>
     <string name="next">NEXT</string>
+    <string name="history">Transaksi</string>
 </resources>

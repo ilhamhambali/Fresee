@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shopping_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.freese.ui.main.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/dapurPintarFragment"
+        android:name="com.example.freese.ui.main.dapur.DapurPintarFragment"
+        android:label="fragment_dapur_pintar"
+        tools:layout="@layout/fragment_dapur_pintar" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.freese.ui.main.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/optionFragment"
+        android:name="com.example.freese.ui.main.option.OptionFragment"
+        android:label="fragment_option"
+        tools:layout="@layout/fragment_option" />
+</navigation>

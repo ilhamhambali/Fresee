@@ -4,24 +4,109 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.option.OptionFragment"
-    android:background="@color/background">
+    android:background="@color/white">
 
     <!-- Toolbar -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/surface"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="Profile"
-        app:titleTextColor="@color/text_primary" />
+        android:layout_height="150dp"
+        android:background="@color/primary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradient_nav"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/profile"
+                    android:textColor="#06231d"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_cart"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="230dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_cart"
+                    app:tint="#06231d"/>
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_profile"
+                    app:tint="#06231d"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="105dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/circle_shape"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="32dp"
+                    android:backgroundTint="@color/secondary"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_profile" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="@dimen/_16ssp"
+                        android:text="John Doe"
+                        android:textColor="#06231d"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Bandung"
+                        android:textColor="#06231d"
+                        android:textSize="16sp"
+                        android:textStyle="" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!-- Konten Utama -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:background="@color/white"
+        android:layout_marginTop="150dp"
         android:paddingHorizontal="16dp">
 
         <LinearLayout
@@ -29,27 +114,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Gambar Profil -->
-            <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/circle_shape"
-                android:src="@drawable/ic_profile"
-                android:backgroundTint="@color/surface"
-                android:padding="16dp" />
 
-            <!-- Nama Profil -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:text="John Doe"
-                android:textColor="@color/text_primary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <!-- CardView untuk Pilihan -->
             <LinearLayout
@@ -63,19 +128,21 @@
                     android:id="@+id/accountCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="8dp"
                     app:cardElevation="6dp"
-                    app:cardCornerRadius="16dp">
+                    app:cardCornerRadius="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:background="@color/white"
+                        android:paddingVertical="8dp"
+                        android:paddingHorizontal="16dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_profile"
                             app:tint="@color/text_primary" />
 
@@ -86,7 +153,7 @@
                             android:layout_gravity="center_vertical"
                             android:text="Account"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -98,17 +165,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="6dp"
-                    app:cardCornerRadius="16dp">
+                    app:cardCornerRadius="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:background="@color/white"
+                        android:paddingVertical="8dp"
+                        android:paddingHorizontal="16dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="26dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_baseline_lock_24"
                             app:tint="@color/text_primary" />
 
@@ -119,7 +188,7 @@
                             android:layout_gravity="center_vertical"
                             android:text="Produk Saya"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -132,17 +201,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="6dp"
-                    app:cardCornerRadius="16dp">
+                    app:cardCornerRadius="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:background="@color/white"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="16dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_add"
                             app:tint="@color/text_primary" />
 
@@ -153,11 +224,12 @@
                             android:layout_gravity="center_vertical"
                             android:text="Jual Buah dan Sayur"
                             android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
+
 
                 <!-- Item Pilihan: Bantuan -->
                 <com.google.android.material.card.MaterialCardView
@@ -166,19 +238,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     app:cardElevation="6dp"
-                    app:cardCornerRadius="16dp">
+                    app:cardCornerRadius="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:background="@color/white"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="18dp"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:src="@drawable/ic_logout"
-                            app:tint="@color/text_primary" />
+                            app:tint="@color/red" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -186,8 +260,8 @@
                             android:layout_marginStart="16dp"
                             android:layout_gravity="center_vertical"
                             android:text="Keluar"
-                            android:textColor="@color/text_primary"
-                            android:textSize="16sp"
+                            android:textColor="@color/red"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 

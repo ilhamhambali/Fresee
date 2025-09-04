@@ -23,7 +23,7 @@
     <string name="search">Search</string>
     <string name="scan">SEE</string>
     <string name="cart">Keranjang</string>
-    <string name="profile">Profil</string>
+    <string name="profile">Profile</string>
     <string name="AI">AI</string>
     <string name="whatsapp_number">Nomor Whatsapp</string>
     <string name="segar">SEGAR/TIDAK SEGAR</string>
@@ -32,4 +32,8 @@
     <string name="skip">SKIP</string>
     <string name="next">NEXT</string>
     <string name="lewati">Lewati</string>
+    <string name="favorit">Favorite</string>
+    <string name="history">Transaksi</string>
+    <string name="dapur_pintar">Dapur Pintar</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
