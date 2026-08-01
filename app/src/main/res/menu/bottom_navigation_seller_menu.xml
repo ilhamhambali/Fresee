@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_seller_home"
+        android:icon="@drawable/ic_home"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/nav_seller_products"
+        android:icon="@drawable/ic_product"
+        android:title="Produk Saya" />
+
+    <item
+        android:id="@+id/nav_seller_orders"
+        android:icon="@drawable/ic_cart"
+        android:title="Pesanan" />
+
+    <item
+        android:id="@+id/nav_seller_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="Akun" />
+</menu>
