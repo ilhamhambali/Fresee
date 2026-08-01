@@ -1,273 +1,97 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.option.OptionFragment"
-    android:background="@color/white">
+    tools:context=".ui.main.option.OptionFragment">
 
-    <!-- Toolbar -->
+    <!-- Profile Section -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:civ_border_color="@color/white_dark"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nama Pengguna"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_profile" />
+
+    <TextView
+        android:id="@+id/tv_store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Nama Toko"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name" />
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/primary">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_store_name">
 
-        <LinearLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_edit_profile"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_nav"
-            android:orientation="vertical">
+            android:gravity="start|center_vertical"
+            android:text="Edit Profil"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            app:icon="@drawable/ic_edit"
+            app:iconPadding="16dp"
+            app:iconTint="@android:color/darker_gray" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_change_password"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start|center_vertical"
+            android:text="Ganti Password"
+            android:textAllCaps="false"
+            android:textColor="@android:color/black"
+            app:icon="@drawable/ic_lock"
+            app:iconPadding="16dp"
+            app:iconTint="@android:color/darker_gray" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/profile"
-                    android:textColor="#06231d"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_cart"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_marginStart="230dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_cart"
-                    app:tint="#06231d"/>
-
-                <ImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_profile"
-                    app:tint="#06231d"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="105dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:background="@drawable/circle_shape"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="32dp"
-                    android:backgroundTint="@color/secondary"
-                    android:padding="16dp"
-                    android:src="@drawable/ic_profile" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="@dimen/_16ssp"
-                        android:text="John Doe"
-                        android:textColor="#06231d"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginTop="12dp"
-                        android:text="Bandung"
-                        android:textColor="#06231d"
-                        android:textSize="16sp"
-                        android:textStyle="" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="start|center_vertical"
+            android:text="Logout"
+            android:textAllCaps="false"
+            android:textColor="@color/design_default_color_error"
+            app:icon="@drawable/ic_logout"
+            app:iconPadding="16dp"
+            app:iconTint="@color/design_default_color_error" />
     </LinearLayout>
 
-    <!-- Konten Utama -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_marginTop="150dp"
-        android:paddingHorizontal="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-
-            <!-- CardView untuk Pilihan -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:orientation="vertical">
-
-                <!-- Item Pilihan: Account -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/accountCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:paddingVertical="8dp"
-                        android:paddingHorizontal="16dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_profile"
-                            app:tint="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="Account"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Item Pilihan: Produk Saya -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/myProductsCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:paddingVertical="8dp"
-                        android:paddingHorizontal="16dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="26dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_baseline_lock_24"
-                            app:tint="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="Produk Saya"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Item Pilihan: Jual Buah dan Sayur -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/sellProductCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:paddingVertical="5dp"
-                        android:paddingHorizontal="16dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_add"
-                            app:tint="@color/text_primary" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="Jual Buah dan Sayur"
-                            android:textColor="@color/text_primary"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-
-                <!-- Item Pilihan: Bantuan -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/logout_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    app:cardElevation="6dp"
-                    app:cardCornerRadius="5dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:paddingVertical="5dp"
-                        android:paddingHorizontal="18dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_logout"
-                            app:tint="@color/red" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_gravity="center_vertical"
-                            android:text="Keluar"
-                            android:textColor="@color/red"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

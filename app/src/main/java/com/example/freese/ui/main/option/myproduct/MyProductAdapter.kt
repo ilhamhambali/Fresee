@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.freese.data.model.ProductModel
+import com.example.freese.data.remote.model.ProductModel
 import com.example.freese.databinding.ItemMyproductBinding
 
 class MyProductAdapter : RecyclerView.Adapter<MyProductAdapter.MyProductViewHolder>() {

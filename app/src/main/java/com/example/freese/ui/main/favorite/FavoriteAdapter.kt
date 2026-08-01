@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.freese.R
-import com.example.freese.data.model.ProductModel
+import com.example.freese.data.remote.model.ProductModel
 import com.example.freese.databinding.ItemFavoriteBinding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -93,9 +93,9 @@ class FavoriteAdapter : ListAdapter<ProductModel, FavoriteAdapter.FavoriteViewHo
 
       private fun updateFavoriteIcon(isFavorite: Boolean) {
          val color = if (isFavorite) {
-            R.color.red
+            R.color.red_err
          } else {
-            R.color.text_primary
+            R.color.txt_primary
          }
          binding.btnFavorite.setColorFilter(
             ContextCompat.getColor(binding.root.context, color),

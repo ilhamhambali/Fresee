@@ -1,102 +1,117 @@
 package com.example.freese.ui.auth.login
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.example.freese.GenericViewModelFactory
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.freese.data.remote.api.request.LoginRequest
 import com.example.freese.databinding.ActivityLoginBinding
-import com.example.freese.di.DependencyProvider
 import com.example.freese.ui.main.MainActivity
 import com.example.freese.ui.auth.register.RegisterActivity
-import com.example.freese.ui.auth.AuthViewModel
+import com.example.freese.ui.sellermain.SellerMainActivity
+import com.example.freese.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import com.example.freese.utils.Result
+import com.example.freese.viewmodel.UserViewModel
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-   private lateinit var viewModel: AuthViewModel
    private lateinit var binding: ActivityLoginBinding
+   private val authViewModel: AuthViewModel by viewModels()
+   private val userViewModel: UserViewModel by viewModels()
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       binding = ActivityLoginBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
-      binding.idLewati.setOnClickListener {
-         val intent = Intent(this, MainActivity::class.java)
-         startActivity(intent)
-         finish()
+      // Cek apakah pengguna sudah login
+      if (authViewModel.isLoggedIn()) {
+         goToMainActivity()
+         return
       }
 
-      val repository = DependencyProvider.provideUserRepository(this)
-      val factory = GenericViewModelFactory(AuthViewModel::class.java) {
-         AuthViewModel(repository)
-      }
-      viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+      setupObservers()
 
-      setupObserver()
-      setupAction()
-      playAnimation()
-   }
-
-   private fun setupObserver() {
-      viewModel.loginResult.observe(this) { result ->
-         result.onSuccess { response ->
-            Toast.makeText(this, "Login berhasil: ${response.message}", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            finish()
-         }
-         result.onFailure { throwable ->
-            Toast.makeText(this, "Login gagal: ${throwable.message}", Toast.LENGTH_SHORT).show()
-         }
-      }
-   }
-
-   private fun setupAction() {
       binding.loginButton.setOnClickListener {
-         val username = binding.edLoginEmail.text.toString().trim()
+         val email = binding.edLoginEmail.text.toString().trim()
          val password = binding.edLoginPassword.text.toString().trim()
 
-         if (username.isNotEmpty() && password.isNotEmpty()) {
-            // Cukup panggil fungsi login di ViewModel
-            viewModel.login(username, password)
-         } else {
+         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+            return@setOnClickListener
+         }
+         authViewModel.loginUser(LoginRequest(email, password))
+      }
+
+      binding.registerButton.setOnClickListener {
+         startActivity(Intent(this, RegisterActivity::class.java))
+      }
+
+   }
+
+   private fun setupObservers() {
+      lifecycleScope.launch {
+         repeatOnLifecycle(Lifecycle.State.STARTED) {
+            authViewModel.loginState.collect { result ->
+               when (result) {
+                  is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
+                  is Result.Success -> {
+                     binding.progressBar.visibility = View.GONE
+                     Toast.makeText(this@LoginActivity, "Login berhasil!", Toast.LENGTH_SHORT).show()
+                     userViewModel.getProfile()
+                  }
+                  is Result.Error -> {
+                     binding.progressBar.visibility = View.GONE
+                     Toast.makeText(this@LoginActivity, result.message, Toast.LENGTH_LONG).show()
+                  }
+                  null -> { /* Initial state */ }
+               }
+            }
          }
       }
-      binding.registerButton.setOnClickListener {
-         val intent = Intent(this, RegisterActivity::class.java)
-         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-         startActivity(intent)
-         finish()
+      lifecycleScope.launch {
+         userViewModel.profileState.collect { result ->
+            when (result) {
+               is Result.Loading -> {
+                  /* Biarkan loading tetap berputar */
+               }
+               is Result.Success -> {
+                  // Sembunyikan loading
+                  val role = result.data.role
+
+                  // Simpan Role ke SessionManager
+                  userViewModel.saveUserRole(role)
+
+                  // ROUTING: Pisahkan arah tujuan berdasarkan Role
+                  if (role == "seller") {
+                     val intent = Intent(this@LoginActivity, SellerMainActivity::class.java)
+                     startActivity(intent)
+                  } else {
+                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                     startActivity(intent)
+                  }
+                  finish() // Tutup halaman login
+               }
+               is Result.Error -> {
+                  /* Jika gagal ambil profil, minta user login ulang atau coba lagi */
+               }
+               null -> {}
+            }
+         }
       }
-
    }
-   private fun playAnimation() {
 
-
-      val emailEditTextLayout =
-         ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
-      val passwordTextView =
-         ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
-      val passwordEditTextLayout =
-         ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-      val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
-
-      AnimatorSet().apply {
-         playSequentially(
-
-            emailEditTextLayout,
-            passwordTextView,
-            passwordEditTextLayout,
-            login
-         )
-         startDelay = 100
-      }.start()
+   private fun goToMainActivity(){
+      startActivity(Intent(this, MainActivity::class.java))
+      finish()
    }
+
 }

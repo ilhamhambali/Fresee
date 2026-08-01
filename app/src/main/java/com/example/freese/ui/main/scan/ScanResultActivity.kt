@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.freese.data.repository.ScanRepository
+import com.example.freese.repository.ScanRepository
 import com.example.freese.databinding.ActivityScanResultBinding
+import com.example.freese.viewmodel.ScanViewModel
+import com.example.freese.viewmodel.ScanViewModelFactory
 
 class ScanResultActivity : AppCompatActivity() {
 

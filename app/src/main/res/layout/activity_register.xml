@@ -4,188 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_page"
     tools:context=".ui.auth.register.RegisterActivity">
 
-    <TextView
-        android:id="@+id/idLewati"
-        android:layout_width="wrap_content"
+    <!-- TabLayout untuk menampilkan judul tab -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:textSize="14sp"
-        android:text="@string/lewati"
-        android:textColor="@color/text_primary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/nameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/name"
-        android:textColor="@color/text_primary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nameEditTextLayout"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nameEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/emailTextView"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_person_24">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicatorColor="@color/brand_primary"
+        app:tabTextColor="@color/black_ink" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_register_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/emailTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/email"
-        android:textColor="@color/text_primary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/email_edit_text_layout"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_edit_text_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/et_nomor_whatsapp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_email_24">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_register_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/et_nomor_whatsapp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/whatsapp_number"
-        android:textColor="@color/text_primary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nomor_edit_text_layout"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nomor_edit_text_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/passwordTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_number">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_register_nomor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="phone" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/passwordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/password"
-        android:textColor="@color/text_primary"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditTextLayout"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordEditTextLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="180dp"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24">
-
-        <com.example.freese.customview.MyEditText
-            android:id="@+id/ed_register_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:padding="16dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/registerButton"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="@color/primary_variant"
-        android:text="@string/signup"
-        android:textSize="16sp"
-        app:cornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/idLLBtn"/>
-
-    <LinearLayout
-        android:id="@+id/idLLBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/have_account"
-            android:textColor="@color/text_secondary" />
-
-        <TextView
-            android:id="@+id/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="@string/login"
-            android:textColor="@color/primary_variant"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <!-- ViewPager2 untuk menampung Fragment -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tabs"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

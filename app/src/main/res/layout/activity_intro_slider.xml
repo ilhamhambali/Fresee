@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:background="@color/white_dimmed"
     tools:context=".ui.slider.IntroSliderActivity">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -20,37 +20,41 @@
         android:id="@+id/idLLDots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="23dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/idBtnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/idBtnSkip"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@string/imagebtnnext"
-        android:rotation="180"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/idBtnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginBottom="25dp"
         android:padding="8dp"
         android:text="@string/next"
-        android:textColor="@color/white"
+        android:textColor="@color/black_ink"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/idBtnSkip"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/idBtnSkip" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/idBtnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="25dp"
+        android:padding="8dp"
+        android:text="@string/login"
+        android:textColor="@color/black_ink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

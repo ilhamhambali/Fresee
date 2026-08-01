@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
+        android:background="@color/green_leaf"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,17 +18,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:title="Jual"
-        app:titleTextColor="@color/text_primary" />
+        app:titleTextColor="@color/white_pure" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:layout_marginTop="63dp"
         android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:orientation="vertical">
 
 
@@ -44,18 +43,14 @@
                     android:id="@+id/btn_fruit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primary"
                     android:text="Buah"
-                    android:textColor="@color/white"
                     android:layout_marginEnd="8dp" />
 
                 <Button
                     android:id="@+id/btn_vegetable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/surface"
-                    android:text="Sayur"
-                    android:textColor="@color/text_primary" />
+                    android:text="Sayur"/>
             </LinearLayout>
 
             <!-- Image Section -->
@@ -75,11 +70,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
-                    android:backgroundTint="@color/primary"
                     app:cornerRadius="10dp"
                     android:text="Ambil Foto"
-                    android:textColor="@color/white" />
-            </FrameLayout>
+/>            </FrameLayout>
 
             <!-- Freshness Status -->
             <LinearLayout
@@ -97,17 +90,14 @@
                     android:text="SEGAR"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/primary" />
-
+/>
                 <Button
                     android:id="@+id/btn_check_freshness"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/primary"
                     app:cornerRadius="10dp"
                     android:text="SEE FRESHNESS"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+/>            </LinearLayout>
 
             <!-- Food Details -->
             <TextView
@@ -116,7 +106,6 @@
                 android:text="Detail Makanan"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/text_primary"
                 android:layout_marginBottom="8dp" />
 
             <EditText
@@ -124,7 +113,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nama Makanan"
-                android:backgroundTint="@color/surface"
                 android:inputType="text" />
 
             <EditText
@@ -132,7 +120,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Deskripsi"
-                android:backgroundTint="@color/surface"
                 android:inputType="textMultiLine"
                 android:minLines="3"
                 android:layout_marginBottom="16dp" />
@@ -150,7 +137,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Harga"
-                    android:backgroundTint="@color/surface"
                     android:inputType="numberDecimal" />
 
                 <EditText
@@ -159,7 +145,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Stok"
-                    android:backgroundTint="@color/surface"
                     android:inputType="number"
                     android:layout_marginStart="8dp" />
             </LinearLayout>
@@ -172,9 +157,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="120dp"
-                android:backgroundTint="@color/primary"
                 android:text="Jual"
-                android:textColor="@color/surface"
                 app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

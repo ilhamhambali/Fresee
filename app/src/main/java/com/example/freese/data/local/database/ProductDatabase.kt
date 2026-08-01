@@ -1,0 +1,30 @@
+package com.example.freese.data.local.database
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.freese.data.local.database.entity.ProductEntity
+
+
+@Database(entities = [ProductEntity::class], version = 1 , exportSchema = false)
+abstract class ProductDatabase : RoomDatabase() {
+   abstract fun productDao(): ProductDao
+
+   companion object {
+      @Volatile
+      private var INSTANCE: ProductDatabase? = null
+
+      @JvmStatic
+      fun getDatabase(context: Context): ProductDatabase {
+         if (INSTANCE == null) {
+            synchronized(ProductDatabase::class.java) {
+               INSTANCE = Room.databaseBuilder(context.applicationContext,
+                  ProductDatabase::class.java, "product_database")
+                  .build()
+            }
+         }
+         return INSTANCE as ProductDatabase
+      }
+   }
+}

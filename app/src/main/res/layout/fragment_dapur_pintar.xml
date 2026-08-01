@@ -121,8 +121,8 @@
                 android:layout_marginTop="12dp"
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/item_buah_inventaris"
-                tools:itemCount="3" />
-
+                tools:itemCount="3" >
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -137,5 +137,20 @@
         app:tint="@android:color/white"
         app:backgroundTint="#4CAF50"
         android:contentDescription="Tambah Buah" />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
+    <TextView
+        android:id="@+id/tv_empty_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dapur Anda masih kosong.\nTekan tombol + untuk menambah buah."
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

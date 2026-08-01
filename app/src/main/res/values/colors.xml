@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Palette -->
-    <color name="primary">#347928</color>
-    <color name="primary_variant">#2B5E20</color>
-    <color name="secondary">#C0EBA6</color>
+    <color name="green_leaf">#347928</color>
+    <color name="green_dark">#2B5E20</color>
+    <color name="green_light">#C0EBA6</color>
 
-    <!-- Background and Surface -->
-    <color name="background">#FFFBE6</color>
-    <color name="surface">#F5F5F5</color>
-    <color name="bg_slider">#008631</color>
+    <color name="red_err">#E82727</color>       <color name="orange">#FF5722</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#212121</color>
-    <color name="text_secondary">#757575</color>
-    <color name="red">#FF0000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="black">#161616</color>
-    <color name="splash_background">#E3DAC9</color>
+    <color name="cream_day">#FFFBE6</color>     <color name="grey_surface_day">#F5F5F5</color>
+
+    <color name="black_ink">#161616</color>     <color name="grey_text">#757575</color>
+    <color name="white_pure">#FFFFFF</color>
+
+    <color name="black_night_bg">#121212</color> <color name="grey_night_surface">#2C2C2C</color>
+    <color name="white_dimmed">#E0E0E0</color>    <color name="white_dark">#DDDDDD</color>
+
+    <color name="brand_primary">@color/green_leaf</color>
+    <color name="brand_secondary">@color/green_light</color>
+
+    <color name="bg_page">@color/cream_day</color>
+    <color name="bg_surface">@color/grey_surface_day</color>
+
+    <color name="txt_primary">@color/black_ink</color>
+    <color name="txt_secondary">@color/grey_text</color>
+    <color name="txt_on_brand">@color/white_pure</color>
+
+<!--    <color name="bg_icon">@color/white_pure</color>-->
 </resources>

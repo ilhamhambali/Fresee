@@ -7,27 +7,28 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.freese.di.DependencyProvider
-import com.example.freese.GenericViewModelFactory
 import com.example.freese.R
 import com.example.freese.databinding.ActivityMainBinding
+import com.example.freese.viewmodel.AuthViewModel
+import com.example.freese.ui.auth.login.LoginActivity
+import com.example.freese.ui.main.dapur.DapurPintarFragment
 import com.example.freese.ui.main.favorite.FavoriteFragment
 import com.example.freese.ui.main.home.HomeFragment
 import com.example.freese.ui.main.option.OptionFragment
 import com.example.freese.ui.main.scan.ScanActivity
-import com.example.freese.ui.auth.AuthViewModel
 import com.example.freese.ui.main.history.HistoryFragment
 import com.example.freese.ui.main.scan.ScanActivity.Companion.CAMERAX_RESULT
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: AuthViewModel
     private lateinit var binding: ActivityMainBinding
-
+    private val authViewModel: AuthViewModel by viewModels()
     private var currentImageUri: Uri? = null
 
     private val requestPermissionLauncher =
@@ -49,18 +50,20 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (!authViewModel.isLoggedIn()) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
-
-        val repository = DependencyProvider.provideUserRepository(this)
-        val factory = GenericViewModelFactory(AuthViewModel::class.java) {
-            AuthViewModel(repository)
-        }
-        viewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -74,10 +77,10 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.navigation_dapur -> {
-                    replaceFragment(FavoriteFragment())
-                    true
-                }
+//                R.id.navigation_dapur -> {
+//                    replaceFragment(DapurPintarFragment())
+//                    true
+//                }
 
                 R.id.navigation_scan -> {
                     startCameraX()
@@ -96,6 +99,8 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+
     }
 
     private fun replaceFragment(fragment: Fragment) {

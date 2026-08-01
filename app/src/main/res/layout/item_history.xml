@@ -5,108 +5,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:cardUseCompatPadding="true">
+    app:cardElevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tv_transaction_date"
+            android:id="@+id/tv_order_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="24 Okt 2024"
-            android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Belanja - #105" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_id"
+            tools:text="20 Mei 2024" />
 
         <TextView
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_status_selesai"
-            android:paddingStart="10dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="4dp"
-            android:text="Selesai"
-            android:textColor="#388E3C"
-            android:textSize="12sp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp"
             android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@color/black_ink"
+            android:background="@color/white_dark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="PENDING" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_date"/>
 
         <ImageView
-            android:id="@+id/iv_product_image"
+            android:id="@+id/iv_product"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_transaction_date"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toBottomOf="@id/divider1"
+            tools:src="@tools:sample/backgrounds/scenic"/>
 
         <TextView
             android:id="@+id/tv_product_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="buahahahaha"
-            android:textColor="@android:color/black"
             android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/iv_product"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_product_image"
-            app:layout_constraintTop_toTopOf="@id/iv_product_image" />
+            app:layout_constraintTop_toTopOf="@id/iv_product"
+            tools:text="Bayam Hijau" />
 
         <TextView
-            android:id="@+id/tv_item_count"
+            android:id="@+id/tv_more_items"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:textSize="12sp"
+            android:textColor="?android:attr/textColorSecondary"
+            app:layout_constraintStart_toEndOf="@id/iv_product"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+            tools:text="+ 1 produk lainnya" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_product"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1 barang"
+            android:text="Total Belanja"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/tv_product_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"/>
 
         <TextView
             android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Rp 34.640"
-            android:textColor="@android:color/black"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_total_label" />
-
-        <TextView
-            android:id="@+id/tv_total_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Total Belanja"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_product_image" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2"
+            android:layout_marginTop="34dp"
+            tools:text="Rp 25.000"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_buy_again"
-            android:layout_width="133dp"
-            android:layout_height="40dp"
-            android:backgroundTint="#00C853"
-            android:text="Beli Lagi"
-            app:cornerRadius="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_total_price"
+            android:id="@+id/btn_cancel"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Batalkan"
+            android:textColor="@color/design_default_color_error"
+            app:strokeColor="@color/design_default_color_error"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/tv_total_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_total_label"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            android:layout_marginTop="12dp"
+            tools:visibility="visible"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Pesanan Diterima"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            tools:visibility="visible" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Bayar"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

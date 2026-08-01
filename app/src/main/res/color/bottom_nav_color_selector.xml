@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Warna saat item navigasi dipilih (aktif) -->
-    <item android:state_checked="true" android:color="@color/primary" android:fillColor="@color/primary" />
+    <item android:state_checked="true" android:color="@color/green_leaf" android:fillColor="@color/green_leaf" />
 
     <!-- Warna default (saat tidak dipilih) -->
     <item android:color="#181818" />

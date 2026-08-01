@@ -3,7 +3,7 @@
     android:shape="oval">
 
     <!-- Ganti @color/primary_variant dengan warna utama aplikasi Anda jika perlu -->
-    <solid android:color="#85A947"/>
+    <solid android:color="@color/green_dark"/>
 
     <size
         android:width="8dp"

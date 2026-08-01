@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freese.data.model.ProductModel
+import com.example.freese.data.remote.model.ProductModel
 import com.example.freese.databinding.ActivityMyProductBinding
 import com.example.freese.ui.detail.DetailActivity
 
@@ -19,7 +19,6 @@ class MyProductActivity : AppCompatActivity() {
       setContentView(binding.root)
 
       setupRecyclerView()
-      loadDummyData()
 
    }
    private fun setupRecyclerView() {
@@ -38,13 +37,5 @@ class MyProductActivity : AppCompatActivity() {
 
    }
 
-   private fun loadDummyData() {
-      // Data Dummy Buah
-      val buahList = listOf(
-         ProductModel("3", "https://cdn.rri.co.id/berita/Cirebon/o/1720415131736-WhatsApp_Image_2024-07-08_at_10.12.59/4moixi4tmdt7m6g.jpeg", "Semangka", "Buah Segar", "Admin", "Kota Bandung", "10", "buah","Rp.9.000"),
-         )
-      // Set data ke adapter
-      buahAdapter.setListProduct(buahList)
-   }
 
 }

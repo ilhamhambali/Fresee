@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freese.R
-import com.example.freese.data.model.ProductModel
+import com.example.freese.data.remote.model.ProductModel
 import com.example.freese.ui.detail.DetailActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

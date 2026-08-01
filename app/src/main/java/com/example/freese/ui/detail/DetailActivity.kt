@@ -1,116 +1,139 @@
 package com.example.freese.ui.detail
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import ProductResponse
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.freese.data.model.ProductModel
-import com.example.freese.databinding.ActivityDetailBinding
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
+import com.example.freese.databinding.ActivityDetailBinding
 import com.bumptech.glide.Glide
 import com.example.freese.R
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.example.freese.viewmodel.CartViewModel
+import com.example.freese.utils.Result
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.NumberFormat
+import java.util.Locale
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
 
    private lateinit var binding: ActivityDetailBinding
-   private val detailViewModel: DetailViewModel by viewModels()
+   private val cartViewModel: CartViewModel by viewModels()
+   private var quantity = 1 // Kuantitas default
+   private var maxStock = 0 // Akan diisi dari data API
 
    override fun onCreate(savedInstanceState: Bundle?) {
       super.onCreate(savedInstanceState)
       binding = ActivityDetailBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
-      val product = intent.getParcelableExtra<ProductModel>("EXTRA_PRODUCT")
-      product?.let {
-         Glide.with(this)
-            .load(it.imageRes)
-            .into(binding.detailImage)
-         binding.tvDetailPrice.text = it.price
-         binding.tvDetailTitle.text = it.name
-         binding.tvDetailDesc.text = it.description
-         binding.tvStok.text = it.stok
-         binding.tvCategory.text = it.category
-         binding.tvSellerName.text = it.seller
-         binding.tvDomi.text = it.cityName
+      // 1. Tangkap data dari Intent
+      val product = intent.getParcelableExtra<ProductResponse>("EXTRA_PRODUCT")
 
-         // Load favorite status
-         detailViewModel.loadFavoriteStatus(it.id)
+      if (product != null) {
+         setupUI(product)
+         setupAction(product)
+         setupObservers()
+      } else {
+         Toast.makeText(this, "Data produk tidak ditemukan", Toast.LENGTH_SHORT).show()
+         finish()
+      }
+   }
+
+   private fun setupUI(product: ProductResponse) {
+      maxStock = product.stock
+
+      binding.apply {
+         tvDetailTitle.text = product.name
+         tvDetailDesc.text = product.description
+
+         val localeID = Locale("in", "ID")
+         val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+         formatRupiah.maximumFractionDigits = 0
+         tvDetailPrice.text = formatRupiah.format(product.price)
+
+         tvStok.text = "Stok: ${product.stock}"
+         tvCategory.text = product.category
+
+         val sellerName = product.owner?.farmName ?: product.owner?.fullName ?: "Penjual Tidak Diketahui"
+         tvSellerName.text = sellerName
+
+         tvDomi.text = "Tersedia"
+
+         Glide.with(this@DetailActivity)
+            .load(product.image)
+            .placeholder(R.drawable.ic_logo_text)
+            .into(detailImage)
+
+         val tvQuantity = linearLayout2.getChildAt(1) as android.widget.TextView
+         tvQuantity.text = quantity.toString()
+      }
+   }
+
+   private fun setupAction(product: ProductResponse) {
+      binding.ivBack.setOnClickListener {
+         onBackPressedDispatcher.onBackPressed()
       }
 
-      // Observasi perubahan status favorit
-      detailViewModel.isFavorite.observe(this, Observer { isFavorite ->
-         updateFavoriteButton(isFavorite)
-      })
+      val btnMinus = binding.linearLayout2.getChildAt(0)
+      val tvQuantity = binding.linearLayout2.getChildAt(1) as android.widget.TextView
+      val btnPlus = binding.linearLayout2.getChildAt(2)
 
-      binding.btnFavorite.setOnClickListener {
-         product?.let {
-            detailViewModel.toggleFavorite(it.id)
-            saveToFavorites(it)
+      btnMinus.setOnClickListener {
+         if (quantity > 1) {
+            quantity--
+            tvQuantity.text = quantity.toString()
          }
       }
 
+      btnPlus.setOnClickListener {
+         if (quantity < maxStock) {
+            quantity++
+            tvQuantity.text = quantity.toString()
+         } else {
+            Toast.makeText(this, "Maksimal pembelian adalah stok yang tersedia", Toast.LENGTH_SHORT).show()
+         }
+      }
 
-      binding.ivBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-
+      binding.btnWa.text = "Masukkan ke Keranjang"
       binding.btnWa.setOnClickListener {
-         val phoneNumber = "6289656647559" // Nomor WhatsApp tujuan
-         val message = "Halo, saya tertarik dengan produk Anda!" // Pesan yang ingin dikirim
-         openWhatsApp(phoneNumber, message)
+         // Panggil fungsi addToCart dari ViewModel
+         cartViewModel.addToCart(product.id, quantity)
       }
    }
+   private fun setupObservers() {
+      lifecycleScope.launch {
+         cartViewModel.addToCartState.collect { result ->
+            when (result) {
+               is Result.Loading -> {
+                  // Kunci tombol agar tidak dispam
+                  binding.btnWa.isEnabled = false
+                  binding.btnWa.text = "Memproses..."
+               }
+               is Result.Success -> {
+                  binding.btnWa.isEnabled = true
+                  binding.btnWa.text = "Masukkan ke Keranjang"
 
-   private fun updateFavoriteButton(isFavorite: Boolean) {
-      val color = if (isFavorite) {
-         R.color.red
-      } else {
-         R.color.text_primary
-      }
-      binding.btnFavorite.setColorFilter(
-         ContextCompat.getColor(this, color),
-         android.graphics.PorterDuff.Mode.SRC_IN
-      )
-   }
+                  // Tampilkan pesan dari backend
+                  Toast.makeText(this@DetailActivity, result.data.msg, Toast.LENGTH_SHORT).show()
 
-   private fun saveToFavorites(product: ProductModel) {
-      // Dapatkan SharedPreferences
-      val sharedPref = getSharedPreferences("FAVORITES_PREF", Context.MODE_PRIVATE)
-      val editor = sharedPref.edit()
+                  // Reset state agar aman
+                  cartViewModel.resetState()
 
-      // Ambil data favorit yang sudah ada
-      val gson = Gson()
-      val type = object : TypeToken<MutableList<ProductModel>>() {}.type
-      val favorites: MutableList<ProductModel> = gson.fromJson(
-         sharedPref.getString("FAVORITES_LIST", "[]"), type
-      ) ?: mutableListOf()
-
-      // Tambahkan produk baru ke daftar favorit
-      if (!favorites.any { it.id == product.id }) { // Cegah duplikasi
-         favorites.add(product)
-      }
-
-      // Simpan kembali ke SharedPreferences
-      editor.putString("FAVORITES_LIST", gson.toJson(favorites))
-      editor.apply()
-   }
-
-   private fun openWhatsApp(phoneNumber: String, message: String) {
-      try {
-         val url = "https://wa.me/$phoneNumber?text=${Uri.encode(message)}"
-         val intent = Intent(Intent.ACTION_VIEW)
-         intent.data = Uri.parse(url)
-         intent.setPackage("com.whatsapp")
-         startActivity(intent)
-      } catch (e: Exception) {
-         Toast.makeText(this, "WhatsApp tidak ditemukan di perangkat Anda.", Toast.LENGTH_SHORT).show()
+                  // Opsional: Tutup halaman detail setelah sukses masuk keranjang
+                  finish()
+               }
+               is Result.Error -> {
+                  binding.btnWa.isEnabled = true
+                  binding.btnWa.text = "Masukkan ke Keranjang"
+                  Toast.makeText(this@DetailActivity, result.message, Toast.LENGTH_LONG).show()
+                  cartViewModel.resetState()
+               }
+               null -> { /* State awal, diamkan saja */ }
+            }
+         }
       }
    }
-
 }
-
-

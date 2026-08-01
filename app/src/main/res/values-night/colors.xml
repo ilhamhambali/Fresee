@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Palette -->
-    <color name="primary">#C0EBA6</color> <!-- Lebih terang untuk tema gelap -->
-    <color name="primary_variant">#98D182</color> <!-- Variasi dari primary -->
-    <color name="secondary">#347928</color> <!-- Kontras untuk tema gelap -->
+    <color name="brand_primary">@color/green_leaf</color> <color name="brand_secondary">@color/green_leaf</color>
 
-    <!-- Background and Surface -->
-    <color name="background">#2E2E2E</color> <!-- Warna netral gelap -->
-    <color name="surface">#424242</color> <!-- Permukaan sedikit lebih terang -->
-    <color name="bg_slider">#123524</color>
+    <color name="bg_page">@color/black_night_bg</color>
+    <color name="bg_surface">@color/grey_night_surface</color>
 
-    <!-- Text Colors -->
-    <color name="text_primary">#FFFFFF</color> <!-- Warna terang untuk teks utama -->
-    <color name="text_secondary">#B0BEC5</color> <!-- Warna sekunder lebih halus -->
-
-    <color name="red">#4E1010</color>
-    <color name="white">#1B1B1B</color>
-    <color name="black">#E9E9E9</color>
-</resources>
+    <color name="txt_primary">@color/white_dimmed</color>
+    <color name="txt_secondary">@color/grey_text</color>
+    <color name="txt_on_brand">@color/black_ink</color> </resources>

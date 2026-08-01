@@ -9,13 +9,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
         android:elevation="4dp"
+        android:background="@color/green_leaf"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:title=" "
-        app:titleTextColor="@color/text_primary" />
+        app:titleTextColor="@color/txt_primary" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,10 +42,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:textColor="@color/green_leaf"
             android:text="@string/segar"
             android:textSize="24sp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/primary" />
-    </LinearLayout>
+/>    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,7 +16,7 @@
         android:maxSdkVersion="32" />
 
     <application
-        android:name=".data.database.FreeseDB"
+        android:name=".Fresee"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,7 +26,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Freese"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.sellermain.sellerproduct.AddEditProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sellermain.SellerMainActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -39,8 +46,8 @@
         </activity>
         <activity
             android:name=".ui.slider.IntroSliderActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.main.option.sell.SellActivity"
             android:exported="false" />
@@ -74,8 +81,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

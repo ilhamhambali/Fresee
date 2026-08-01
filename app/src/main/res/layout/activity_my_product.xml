@@ -11,15 +11,15 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/surface"
         android:elevation="4dp"
+        android:background="@color/green_leaf"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:title="Produk Saya"
-        app:titleTextColor="@color/text_primary" />
+        app:titleTextColor="@color/white_pure"/>
 
     <!-- RecyclerView for Favorite Products -->
     <androidx.recyclerview.widget.RecyclerView

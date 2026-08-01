@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -13,10 +14,11 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.freese.R
 import com.example.freese.databinding.ActivityIntroSliderBinding
+import com.example.freese.ui.auth.login.LoginActivity
+import com.example.freese.ui.auth.register.RegisterActivity
 import com.example.freese.ui.main.MainActivity
 class IntroSliderActivity : AppCompatActivity() {
 
-   // Deklarasikan objek binding. Ini akan menggantikan semua variabel view individu.
    private lateinit var binding: ActivityIntroSliderBinding
 
    private lateinit var adapter: SliderAdapter
@@ -27,13 +29,17 @@ class IntroSliderActivity : AppCompatActivity() {
          super.onPageSelected(position)
          addDots(size, position)
 
-         if (position == 2) {
-            Handler(Looper.getMainLooper()).postDelayed({
-               val intent = Intent(this@IntroSliderActivity, MainActivity::class.java)
-               intent.putExtra("linkss", "https://hssakingamapp.blogspot.com/")
-               startActivity(intent)
-               finish()
-            }, 5000)
+         if (position == size - 1) {
+            // Sembunyikan Next & Skip
+            binding.idBtnNext.visibility = View.GONE
+
+            // Tampilkan Login & Register
+            binding.idBtnLogin.visibility = View.VISIBLE
+         } else {
+            // Jika bukan di halaman terakhir, kembalikan ke awal
+            binding.idBtnNext.visibility = View.VISIBLE
+
+            binding.idBtnLogin.visibility = View.GONE
          }
       }
 
@@ -54,7 +60,6 @@ class IntroSliderActivity : AppCompatActivity() {
 
       if (firstTime == "Yes") {
          val intent = Intent(this@IntroSliderActivity, MainActivity::class.java)
-         intent.putExtra("linkss", "https://hssakingamapp.blogspot.com/")
          startActivity(intent)
          finish()
       } else {
@@ -64,12 +69,6 @@ class IntroSliderActivity : AppCompatActivity() {
          }
       }
 
-      // Akses tombol 'skip' melalui objek binding
-      binding.idBtnSkip.setOnClickListener {
-         val intent = Intent(this@IntroSliderActivity, MainActivity::class.java)
-         startActivity(intent)
-         finish()
-      }
       binding.idBtnNext.setOnClickListener {
          val currentPage = binding.idViewPager.currentItem
 
@@ -82,7 +81,13 @@ class IntroSliderActivity : AppCompatActivity() {
          }
       }
 
-      // BENAR
+      binding.idBtnLogin.setOnClickListener {
+         val intent = Intent(this, LoginActivity::class.java)
+         startActivity(intent)
+         finish()
+      }
+
+
       val sliderItems = listOf(
          SliderItem("", "Thank you for installing our App", R.drawable.image_login),
          SliderItem("", "The School that inspires you",  R.drawable.image_signup),
@@ -90,7 +95,6 @@ class IntroSliderActivity : AppCompatActivity() {
       )
       adapter = SliderAdapter(sliderItems)
 
-      // Akses ViewPager melalui objek binding
       binding.idViewPager.adapter = adapter
 
       size = sliderItems.size
@@ -103,23 +107,19 @@ class IntroSliderActivity : AppCompatActivity() {
    private fun addDots(size: Int, pos: Int) {
       if (size <= 0) return
 
-      // Hapus semua view yang ada sebelumnya
       binding.idLLDots.removeAllViews()
 
-      // Buat ImageView untuk setiap halaman
       val dots = Array(size) { ImageView(this) }
 
       for (i in 0 until size) {
          dots[i] = ImageView(this)
 
-         // Pilih drawable berdasarkan posisi
          if (i == pos) {
             dots[i].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_active))
          } else {
             dots[i].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.dot_inactive))
          }
 
-         // Atur margin agar ada jarak antar titik
          val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
@@ -128,7 +128,6 @@ class IntroSliderActivity : AppCompatActivity() {
          }
          dots[i].layoutParams = params
 
-         // Tambahkan ImageView ke LinearLayout
          binding.idLLDots.addView(dots[i])
       }
    }

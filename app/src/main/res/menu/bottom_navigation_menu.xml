@@ -7,11 +7,6 @@
         android:title="@string/home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/navigation_dapur"
-        android:icon="@drawable/chef_hat"
-        android:title="@string/dapur_pintar"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_scan"
         android:title="@string/AI"

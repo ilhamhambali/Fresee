@@ -10,11 +10,13 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.freese.data.repository.ScanRepository
+import com.example.freese.repository.ScanRepository
 import com.example.freese.utils.getImageUri
 import com.example.freese.databinding.ActivityScanBinding
 import com.example.freese.utils.reduceFileImage
 import com.example.freese.utils.uriToFile
+import com.example.freese.viewmodel.ScanViewModel
+import com.example.freese.viewmodel.ScanViewModelFactory
 
 class ScanActivity : AppCompatActivity() {
    private lateinit var binding: ActivityScanBinding
@@ -28,17 +30,10 @@ class ScanActivity : AppCompatActivity() {
       binding = ActivityScanBinding.inflate(layoutInflater)
       setContentView(binding.root)
 
-
-
       binding.galleryButton.setOnClickListener { startGallery() }
       binding.captureButton.setOnClickListener { startCamera() }
    }
 
-
-
-
-
-   // Fungsi untuk memilih gambar dari galeri
    private fun startGallery() {
       launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
    }
@@ -49,13 +44,11 @@ class ScanActivity : AppCompatActivity() {
       if (uri != null) {
          currentImageUri = uri
          val imageFile = uriToFile(uri, this).reduceFileImage()
-         Log.d("Image File", "showImage: ${imageFile.path}")
 
          scanViewModel.uploadImage(imageFile)
 
          Handler(Looper.getMainLooper()).postDelayed({
             val message = scanViewModel.scanResult.value?.message
-            Log.d("ScanActivity", "Message to send: $message")
 
             // Kirim via Intent
             val intent = Intent(this, ScanResultActivity::class.java)

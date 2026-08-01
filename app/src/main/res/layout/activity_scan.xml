@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/ic_placeholder_img"
-        app:tint="@color/text_secondary"
-        android:background="@color/surface"/>
+        app:tint="@color/txt_primary"
+        android:background="@color/bg_surface"/>
     <LinearLayout
         android:id="@+id/bottomButtons"
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:layout_height="60dp"
             android:padding="12dp"
             android:background="@drawable/circle_shape"
-            app:tint="@color/white"
+            app:tint="@color/white_dimmed"
             android:src="@drawable/ic_gallery"
             android:contentDescription="Confirm Button"
             android:layout_marginStart="16dp"
@@ -41,6 +41,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_capture"
+            app:tint="@color/white_dimmed"
             android:padding="12dp"
             android:background="@drawable/circle_shape"
             android:contentDescription="Capture Button"

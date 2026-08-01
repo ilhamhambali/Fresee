@@ -1,115 +1,116 @@
 package com.example.freese.ui.main.home
 
+
 import android.content.Intent
 import android.os.Bundle
-import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freese.data.model.ProductModel
+import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.freese.databinding.FragmentHomeBinding
-import com.example.freese.ui.auth.login.LoginActivity
 import com.example.freese.ui.detail.DetailActivity
-import com.example.freese.ui.main.option.account.AccountActivity
 import com.example.freese.ui.search.SearchResultActivity
+import com.example.freese.utils.Result
+import com.example.freese.viewmodel.ProductViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
    private var _binding: FragmentHomeBinding? = null
    private val binding get() = _binding!!
 
-   private lateinit var rekomendasiAdapter: ProductAdapter
-   private lateinit var buahAdapter: ProductAdapter
+   // Panggil ViewModel yang sudah kita buat di Tahap 3
+   private val viewModel: ProductViewModel by viewModels()
+   private lateinit var productAdapter: ProductAdapter
 
    override fun onCreateView(
       inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?
    ): View {
       _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-      binding.edSearch.setOnEditorActionListener { v, actionId, event ->
-         if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-            (event != null && event.keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN)) {
-
-            val query = binding.edSearch.text.toString()
-            if (query.isNotEmpty()) {
-               val intent = Intent(requireContext(), SearchResultActivity::class.java)
-               intent.putExtra("QUERY", query)
-               startActivity(intent)
-            } else {
-               Toast.makeText(requireContext(), "Please enter a search term", Toast.LENGTH_SHORT).show()
-            }
-            true
-         } else {
-            false
-         }
-      }
-
-      binding.ivProfile.setOnClickListener{
-         val intent = Intent(requireContext(), LoginActivity::class.java)
-         startActivity(intent)
-      }
-
-      setupRecyclerView()
-      loadDummyData()
       return binding.root
    }
 
+   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+      super.onViewCreated(view, savedInstanceState)
+
+      setupObservers()
+      setupSearchView()
+      setupRecyclerView()
+
+      // Panggil API untuk mengambil semua produk
+      viewModel.getAllProducts()
+   }
+
    private fun setupRecyclerView() {
-      buahAdapter = ProductAdapter()
-      rekomendasiAdapter = ProductAdapter()
-      buahAdapter.setOnItemClickListener { product ->
+      productAdapter = ProductAdapter { clickedProduct ->
+         // Pindah ke DetailActivity sambil membawa data produk
          val intent = Intent(requireContext(), DetailActivity::class.java)
-         intent.putExtra("EXTRA_PRODUCT", product)
+         intent.putExtra("EXTRA_PRODUCT", clickedProduct)
          startActivity(intent)
       }
 
-      rekomendasiAdapter.setOnItemClickListener { product ->
-         val intent = Intent(requireContext(), DetailActivity::class.java)
-         intent.putExtra("EXTRA_PRODUCT", product)
-         startActivity(intent)
+      binding.rvRekomendasi.apply {
+         layoutManager = GridLayoutManager(requireContext(), 2)
+         adapter = productAdapter
+         setHasFixedSize(true)
       }
-      // Setup RecyclerView Buah
-      binding.rvBuah.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-      binding.rvBuah.setHasFixedSize(true)
-      binding.rvBuah.adapter = buahAdapter
-
-      // Setup RecyclerView Sayur
-      binding.rvRekomendasi.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-      binding.rvRekomendasi.setHasFixedSize(true)
-      binding.rvRekomendasi.adapter = rekomendasiAdapter
+      binding.rvBuah.apply {
+         layoutManager = GridLayoutManager(requireContext(), 3)
+         adapter = productAdapter
+         setHasFixedSize(true)
+      }
    }
 
-   private fun loadDummyData() {
-      // Data Dummy Buah
-         val buahList = listOf(
-         ProductModel("1", "https://assets.unileversolutions.com/v1/36333896.jpg", "Apel", "Buah Segar", "Abah Anom", "Kota Bandung", "10", "buah","Rp.20.000"),
-         ProductModel("2", "https://cdn.rri.co.id/berita/Meulaboh/o/1715939134907-47FFC1F9-C157-4FB3-A126-FFC3D6997C76/bd48p4ouqqa45dd.jpeg", "Anggur", "Buah Segar", "Abah Anom", "Kota Bandung", "10", "buah","Rp.10.000"),
-         ProductModel("3", "https://cdn.rri.co.id/berita/Cirebon/o/1720415131736-WhatsApp_Image_2024-07-08_at_10.12.59/4moixi4tmdt7m6g.jpeg", "Semangka", "Buah Segar", "Admin", "Kota Bandung", "10", "buah","Rp.9.000"),
-      )
+   private fun setupObservers() {
+      lifecycleScope.launch {
+         viewModel.allProductsState.collect { result ->
+            when (result) {
+               is Result.Loading -> {
+                  binding.progressBar.visibility = View.VISIBLE
+                  binding.rvRekomendasi.visibility = View.GONE
+                  binding.rvBuah.visibility = View.GONE
+               }
+               is Result.Success -> {
+                  binding.progressBar.visibility = View.GONE
+                  binding.rvRekomendasi.visibility = View.VISIBLE
+                  binding.rvBuah.visibility = View.VISIBLE
 
-      // Data Dummy Sayur
-      val sayurList = listOf(
-         ProductModel("4", "https://asset.kompas.com/crops/VlWtNcDY4uvGaLzABWEZkYeZ9zY=/0x0:3234x2156/1200x800/data/photo/2021/09/26/614ff48a45114.jpg", "Kol", "Sayur Segar", "Abah Anom", "Kota Bandung", "10", "buah","Rp.20.000"),
-         ProductModel("5", "https://cdn.rri.co.id/berita/Bengkalis/o/1719270001244-WhatsApp_Image_2024-06-25_at_05.56.50/arw5ni8nzj9mqfx.jpeg", "Wortel", "Buah Segar", "Abah Anom", "Kota Bandung", "10", "buah","Rp.10.000"),
-         ProductModel("6", "https://asset-a.grid.id/crop/0x0:0x0/780x800/photo/bobofoto/original/4560_fakta-unik-brokoli.jpg", "Brokoli", "Buah Segar", "Abah Anom", "Kota Bandung", "10", "buah","Rp.9.000"),
-      )
-
-      // Set data ke adapter
-      buahAdapter.setListProduct(buahList)
-      rekomendasiAdapter.setListProduct(sayurList)
+                  // Masukkan data dari API ke dalam Adapter
+                  productAdapter.submitList(result.data)
+               }
+               is Result.Error -> {
+                  binding.progressBar.visibility = View.GONE
+                  Toast.makeText(requireContext(), result.message, Toast.LENGTH_LONG).show()
+               }
+               null -> {}
+            }
+         }
+      }
    }
+   private fun setupSearchView() {
+      // Saat user menyentuh kotak pencarian di Home
+      binding.searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
+         if (hasFocus) {
+            // Hilangkan fokus agar keyboard tidak muncul di Home
+            binding.searchView.clearFocus()
 
-
+            // Pindah ke Halaman Pencarian
+            val intent = Intent(requireContext(), SearchResultActivity::class.java)
+            startActivity(intent)
+         }
+      }
+   }
 
    override fun onDestroyView() {
       super.onDestroyView()
       _binding = null
    }
 }
-
-

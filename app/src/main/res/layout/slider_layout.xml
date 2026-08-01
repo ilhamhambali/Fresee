@@ -3,8 +3,7 @@
     android:id="@+id/idRLSlider"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_slider">
-
+>
     <!--text view for displaying
         our heading-->
     <TextView
@@ -15,7 +14,6 @@
         android:padding="10dp"
         android:text="Slide 1"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="21sp"
         android:textStyle="bold" />
 
@@ -44,7 +42,6 @@
         android:padding="10dp"
         android:text="C++ data structure and ALgorithm Course"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="24sp" />
 

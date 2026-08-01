@@ -3,58 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".ui.main.home.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:textColor="@color/text_primary"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="4dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toStartOf="@+id/iv_cart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Cari sayur, buah..." />
 
-        <EditText
-            android:id="@+id/ed_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_edittext"
-            android:hint="       Search"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:padding="8dp"
-            android:textColor="@color/text_secondary"
-            android:textSize="12dp" />
 
-        <ImageView
-            android:id="@+id/iv_cart"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="11dp"
-            android:src="@drawable/ic_cart"
-            app:tint="#06231d" />
-
-        <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="11dp"
-            android:src="@drawable/ic_profile"
-            app:tint="#06231d" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_cart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/brand_primary" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar">
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/search_view">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,14 +46,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:paddingHorizontal="24dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingHorizontal="24dp">
 
                 <ImageView
                     android:layout_width="12dp"
                     android:layout_height="12dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginVertical="4dp"
+                    android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_location" />
 
                 <TextView
@@ -85,21 +65,22 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:src="@drawable/arrow_down" />
+                    android:src="@drawable/arrow_down"
+                    app:tint="@color/txt_primary" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_gravity="center_vertical"
                     android:text="Rekomendasi\nUntuk\nAnda"
-                    android:textColor="@color/text_primary"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -107,28 +88,20 @@
                     android:id="@+id/rv_rekomendasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="horizontal"
                     android:clipToPadding="false"
+                    android:orientation="horizontal"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    tools:listitem="@layout/item_product"
-                    tools:itemCount="5" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_product" />
             </LinearLayout>
-
-
-
-
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginVertical="16dp"
-                android:background="#3E3E3E"/>
-
-
-
-
+                android:background="#3E3E3E" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -136,7 +109,6 @@
                 android:layout_marginHorizontal="16dp"
                 android:gravity="center_horizontal"
                 android:text="Buah dan Sayur"
-                android:textColor="@color/text_primary"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -149,11 +121,19 @@
                 app:spanCount="3"
                 tools:listitem="@layout/item_product" />
 
-
-
-
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

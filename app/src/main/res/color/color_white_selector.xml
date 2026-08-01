@@ -3,9 +3,9 @@
 
     <!-- Saat terpilih, gunakan drawable ini -->
     <item android:state_checked="true"
-        android:drawable="@drawable/radio_button_checked_bg" android:color="@color/primary" />
+        android:drawable="@drawable/radio_button_checked_bg" android:color="@color/green_leaf" />
 
     <!-- Untuk status lainnya, gunakan drawable ini -->
-    <item android:drawable="@drawable/radio_button_default_bg" android:color="@color/text_secondary" />
+    <item android:drawable="@drawable/radio_button_default_bg" android:color="@color/txt_secondary" />
 
 </selector>
